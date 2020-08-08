@@ -41,10 +41,10 @@ function CVNND_Cmp(Net, epsilon, flag)
 
 %% Parameters 
 % Samples of the array of similairty treshholds
-% epsilon = [0.025, 0.05, 0.075, 0.10, 0.125, 0.15, 0.175, 0.20, 0.225, 0.25, ...
+% epsilon = [0, 0.025, 0.05, 0.075, 0.10, 0.125, 0.15, 0.175, 0.20, 0.225, 0.25, ...
 %     0.275, 0.30, 0.325, 0.35, 0.375, 0.40]; 
-% epsilon = [0 0.050, 0.100, 0.150, 0.200, 0.250, 0.300, 0.350, 0.400]; 
-% epsilon = [0 0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40]; 
+% epsilon = [0, 0.050, 0.100, 0.150, 0.200, 0.250, 0.300, 0.350, 0.400]; 
+% epsilon = [0, 0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40]; 
 
  if (strcmp(flag, 'Ftr&Good') || strcmp(flag, 'Ftr&AP&Good'))
      opts.perf.epsilon = 0.05; % this must coincide with that used in purifyInstIS_Cmp(Net, epsilon, flag);
@@ -72,7 +72,6 @@ for i=1:length(epsilon)
         case 'Ftr&AP&Good'
             Xbar = readtable(sprintf('Purified_%s_%s_G_%.2f_Dist_%.3f.csv',flag, Net,  opts.perf.epsilon, epsilon(i)));
     end
-% Xbar = readtable(sprintf('Purified_%s_%s_Dist_%.3f.csv',flag, Net, eps)); % Read data from the purified file corresponding wiht epsilon;
 
 
 varlabels = Xbar.Properties.VariableNames;
@@ -94,9 +93,11 @@ switch flag
 %          APs are purified with epsilon2; here, 17 is the nubmer of features and
 %          4 is the number of algorithms. 
     case 'Ftr&Good'
-        Z = [X Y/(1 + opts.perf.epsilon)]; 
+        Z = [X sqrt(4/17)*Y];
+%         Z = [X Y/(1 + opts.perf.epsilon)]; 
     case 'Ftr&AP&Good'
-        Z = [X sqrt(4/17)*Y/(1 + opts.perf.epsilon)]; 
+        Z = [X sqrt(4/17)*Y];
+%         Z = [X sqrt(4/17)*Y/(1 + opts.perf.epsilon)]; 
 end
 
 %% The loop to calculate CVNND and Uniformity (Evenness);
@@ -117,7 +118,7 @@ Uniformity = 1- CV
 %}
 %% Wrtie data on the table
 
-Current_data_CVNND = [eps, length(X), std(nearestDist), CV, Uniformity];
+Current_data_CVNND = [epsilon(i), length(X), std(nearestDist), CV, Uniformity];
 fid = fopen(sprintf('CVNND_%s_Purified_%s.csv',flag, Net),'a');
 fprintf(fid,'%f,%f,%f,%f,%f\n', Current_data_CVNND);
 fclose(fid);
@@ -126,15 +127,6 @@ clear fid*
 clear Xbar;
 clear X;
 end
-%{
-%% Normlizing CVNND
-Xbar = readtable(sprintf('CVNND_%s_Purified_%s.csv',flag, Net)); 
-Nrm = [Xbar.InstNumb, Xbar.CV];
-opts.norm.flag = true;
-[Nrm, model.norm] = autoNormalize_X(Nrm, opts.norm);
-CVNND_Nrm = Nrm(:,1).*Nrm(:,2);
-Xbar.NrmCVNND = CVNND_Nrm;
-writetable(Xbar,sprintf('CVNND_%s_Nrm_Purified_%s.csv',flag, Net));
-%}
+
 
 
