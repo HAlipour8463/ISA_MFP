@@ -54,7 +54,7 @@ function CVNND_Cmp(Net, epsilon, flag)
 
 textHeader_CVNND = strjoin(TblHeader_CVNND, ',');
 
-fid = fopen(sprintf('CVNND_%s_Purified_%s.csv',flag, Net),'w'); 
+fid = fopen(sprintf('CVNND_%s_Purified2_%s.csv',flag, Net),'w'); 
 fprintf(fid,'%s\n',textHeader_CVNND);
 fclose(fid);
 clear fid* 
@@ -64,13 +64,13 @@ for i=1:length(epsilon)
 
     switch flag
         case 'Ftr'
-            Xbar = readtable(sprintf('Purified_%s.csv',flag, Net)); 
+            Xbar = readtable(sprintf('Purified2_%s_%s_Dist_%.3f.csv',flag, Net, epsilon(i))); 
         case 'Ftr&AP'
-            Xbar = readtable(sprintf('Purified_%s_%s_Dist_%.3f.csv',flag, Net, epsilon(i)));
+            Xbar = readtable(sprintf('Purified2_%s_%s_Dist_%.3f.csv',flag, Net, epsilon(i)));
         case 'Ftr&Good'
-            Xbar = readtable(sprintf('Purified_%s_%s_G_%.2f_Dist_%.3f.csv',flag, Net,  opts.perf.epsilon, epsilon(i)));
+            Xbar = readtable(sprintf('Purified2_%s_%s_G_%.2f_Dist_%.3f.csv',flag, Net,  opts.perf.epsilon, epsilon(i)));
         case 'Ftr&AP&Good'
-            Xbar = readtable(sprintf('Purified_%s_%s_G_%.2f_Dist_%.3f.csv',flag, Net,  opts.perf.epsilon, epsilon(i)));
+            Xbar = readtable(sprintf('Purified2_%s_%s_G_%.2f_Dist_%.3f.csv',flag, Net,  opts.perf.epsilon, epsilon(i)));
     end
 
 
@@ -87,16 +87,19 @@ switch flag
     case 'Ftr'
         Z = X;
     case 'Ftr&AP'
-        Z = [X sqrt(4/17)*Y]; % factor sqrt(4/17) applies the different epsilons
+        Z = [X, Y/(1+0.26)]; % 0.26 is the value of CPUN
+%         Z = [X sqrt(4/17)*Y]; % factor sqrt(4/17) applies the different epsilons
 %          regarded in purifying features and APs imlicitly. This equals to
 %          epsilon1/spsilon2, where features are purified with epsilon1 and
 %          APs are purified with epsilon2; here, 17 is the nubmer of features and
 %          4 is the number of algorithms. 
     case 'Ftr&Good'
-        Z = [X sqrt(4/17)*Y];
+        Z = [X, Y/(1+0.26)];
+%         Z = [X sqrt(4/17)*Y];
 %         Z = [X Y/(1 + opts.perf.epsilon)]; 
     case 'Ftr&AP&Good'
-        Z = [X sqrt(4/17)*Y];
+        Z = [X, Y/(1+0.26)];
+%         Z = [X sqrt(4/17)*Y];
 %         Z = [X sqrt(4/17)*Y/(1 + opts.perf.epsilon)]; 
 end
 
@@ -119,7 +122,7 @@ Uniformity = 1- CV
 %% Wrtie data on the table
 
 Current_data_CVNND = [epsilon(i), length(X), std(nearestDist), CV, Uniformity];
-fid = fopen(sprintf('CVNND_%s_Purified_%s.csv',flag, Net),'a');
+fid = fopen(sprintf('CVNND_%s_Purified2_%s.csv',flag, Net),'a');
 fprintf(fid,'%f,%f,%f,%f,%f\n', Current_data_CVNND);
 fclose(fid);
 clear fid* 
