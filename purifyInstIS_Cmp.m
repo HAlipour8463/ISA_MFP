@@ -122,7 +122,7 @@ for k = 1:length(epsilon)
                                 Tprcl = Tprcl +1;
                             case 'Ftr&AP'
                                 dist_AP = sqrt(sum((Y(i,:) - Y(j,:)) .^ 2));
-                                if (dist_AP <= epsilon(k)) % epsilon could be different from that given in the function.
+                                if (dist_AP <= sqrt(4/17)*epsilon(k)*(1+0.26)) % 0.26 is the value of CPUN
                                     toPreclude(j) = true;
                                     Tprcl = Tprcl +1;
                                 else
@@ -138,7 +138,7 @@ for k = 1:length(epsilon)
                             case 'Ftr&AP&Good'
                                 if (Ybin(i,:) == Ybin(j,:))
                                     dist_AP = sqrt(sum((Y(i,:) - Y(j,:)) .^ 2));
-                                    if (dist_AP <= epsilon(k)) % epsilon could be different from that given in the function.
+                                    if (dist_AP <= sqrt(4/17)*epsilon(k)*(1+0.26)) % epsilon could be different from that given in the function.
                                         toPreclude(j) = true;
                                         Tprcl = Tprcl +1;
                                     else
@@ -168,17 +168,17 @@ for k = 1:length(epsilon)
         
         switch flag
             case 'Ftr'
-                writetable(PurifiedInst,sprintf('Purified_%s_%s_Dist_%.3f.csv',flag, Net, epsilon(k)));
-                writetable(PrecludedInst,sprintf('Precluded_%s_%s_Dist_%.3f.csv',flag, Net, epsilon(k)));
+                writetable(PurifiedInst,sprintf('Purified2_%s_%s_Dist_%.3f.csv',flag, Net, epsilon(k)));
+                writetable(PrecludedInst,sprintf('Precluded2_%s_%s_Dist_%.3f.csv',flag, Net, epsilon(k)));
             case 'Ftr&AP'
-                writetable(PurifiedInst,sprintf('Purified_%s_%s_Dist_%.3f.csv',flag, Net, epsilon(k)));
-                writetable(PrecludedInst,sprintf('Precluded_%s_%s_Dist_%.3f.csv',flag, Net, epsilon(k)));
+                writetable(PurifiedInst,sprintf('Purified2_%s_%s_Dist_%.3f.csv',flag, Net, epsilon(k)));
+                writetable(PrecludedInst,sprintf('Precluded2_%s_%s_Dist_%.3f.csv',flag, Net, epsilon(k)));
             case 'Ftr&Good'
-                writetable(PurifiedInst,sprintf('Purified_%s_%s_G_%.2f_Dist_%.3f.csv',flag, Net,  opts.perf.epsilon, epsilon(k)));
-                writetable(PrecludedInst,sprintf('Precluded_%s_%s_G_%.2f_Dist_%.3f.csv',flag, Net,  opts.perf.epsilon, epsilon(k)));
+                writetable(PurifiedInst,sprintf('Purified2_%s_%s_G_%.2f_Dist_%.3f.csv',flag, Net,  opts.perf.epsilon, epsilon(k)));
+                writetable(PrecludedInst,sprintf('Precluded2_%s_%s_G_%.2f_Dist_%.3f.csv',flag, Net,  opts.perf.epsilon, epsilon(k)));
             case 'Ftr&AP&Good'
-                writetable(PurifiedInst,sprintf('Purified_%s_%s_G_%.2f_Dist_%.3f.csv',flag, Net,  opts.perf.epsilon, epsilon(k)));
-                writetable(PrecludedInst,sprintf('Precluded_%s_%s_G_%.2f_Dist_%.3f.csv',flag, Net,  opts.perf.epsilon, epsilon(k)));
+                writetable(PurifiedInst,sprintf('Purified2_%s_%s_G_%.2f_Dist_%.3f.csv',flag, Net,  opts.perf.epsilon, epsilon(k)));
+                writetable(PrecludedInst,sprintf('Precluded2_%s_%s_G_%.2f_Dist_%.3f.csv',flag, Net,  opts.perf.epsilon, epsilon(k)));
         end
         %% Activate the following lines if there is more than one network and you want to
         % collect all of them in a Purified_metadata file, which created by the main script, ISA.m;
