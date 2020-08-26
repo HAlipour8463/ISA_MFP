@@ -22,6 +22,11 @@ function ViC(Net)
 
 flag = ["Ftr"; "Ftr&AP"; "Ftr&Good"; "Ftr&AP&Good"];
 
+
+ 
+opts.perf.epsilon = 0.05; % this must coincide with that used in purifyInstIS_Cmp(Net, epsilon, flag);
+
+
 TblHeader_ViC = {'Epsilon' 'Ftr_instNum' 'Ftr_AP_instNum' 'Ftr_Good_instNum' ...
     'Ftr_AP_Good_instNum' 'Ftr_AP' 'Ftr_Good' 'Ftr_AP_Good' 'Rl_Ftr_AP' 'Rl_Ftr_Good' 'Rl_Ftr_AP_Good' ...
     'Ftr_Sim_inst' 'Rl_Sim_Ftr' 'Rl_Sim_Ftr_AP' 'Rl_Sim_Ftr_Good' 'Rl_Sim_Ftr_AP_Good'};
@@ -34,8 +39,8 @@ clear fid*
 
 Xbar1 = readtable(sprintf('CVNND_%s_Purified2_%s.csv',flag(1), Net));
 Xbar2 = readtable(sprintf('CVNND_%s_Purified2_%s.csv',flag(2), Net));
-Xbar3 = readtable(sprintf('CVNND_%s_Purified2_%s.csv',flag(3), Net));
-Xbar4 = readtable(sprintf('CVNND_%s_Purified2_%s.csv',flag(4), Net));
+Xbar3 = readtable(sprintf('CVNND_%s_Purified2_%s_G_%.2f.csv',flag(3), Net, opts.perf.epsilon));
+Xbar4 = readtable(sprintf('CVNND_%s_Purified2_%s_G_%.2f.csv',flag(4), Net, opts.perf.epsilon));
 
 Current_data_ViC = zeros(length(Xbar1.Epsilon), 16);
 fid = fopen(sprintf('ViC_Purified2_%s.csv',Net),'a');
