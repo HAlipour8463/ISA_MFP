@@ -1,4 +1,4 @@
-function purifyInstIS_final(Net, epsilon, flag)
+function purifyInstIS(Net, epsilon, flag)
 %% Description
 % This script purifies benchmarks problems based on the similarity among them.
 % The similarity of two benchmark problems is defined as the Euclidian
