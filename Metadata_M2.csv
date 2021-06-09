@@ -1,4 +1,4 @@
-Instances,Source,algo_Hi_PR,algo_PAR,algo_P2R,algo_Pseudo_Hi_FIFO,feature_Order,feature_Size,feature_AvNdDgr,feature_AVScPotNetExcess,feature_CVAvNdDg,feature_ScCapDens
+Instances,Source,algo_Hi_PR,algo_PAR,algo_P2R,algo_Pseudo_Hi_FIFO,feature_Order,feature_Size,feature_AvNdDgr,feature_AVScPotNetExcess,feature_cvAvNdDg,feature_ScCapDens
 AC_1024_1(C_1m),AC,0.056,0.015,0.01,0,1024,523776,511.5,255.6273,0,0.50005
 AC_16384_1(C_1m),AC,23.387,3.733,3.11,0.359,16384,134209536,8191.5,4095.6742,0,0.49994
 AC_16384_2(C_1m),AC,29.727,4.465,4.191,4.857,16384,134209536,8191.5,4095.4043,0,0.49997
