@@ -15,7 +15,7 @@ Code by: Hossein Alipour
  Copyright: Hossein Alipour
  ```
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4922854.svg)](https://doi.org/10.5281/zenodo.4922854)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4922868.svg)](https://doi.org/10.5281/zenodo.4922868)
 
 
  **dimacs_baisc_factors.c** is a source code in C to extract the basic factors of a given netwrok in DIMACS format. The basic factors are: numNodes, numArcs, NetCap, maxcap, mincap, SrcAAC, SnkAAC,  Src_degree, Snk_degree, and StDAC. The extracted basic factors then used by **ISAFtrExtractorPool_InitilizeTime_mod_pool.m** to extract the final features used in the instance space analysis for MFP (see https://matilda.unimelb.edu.au/matilda/problems/opt/mfp#mfp).  
