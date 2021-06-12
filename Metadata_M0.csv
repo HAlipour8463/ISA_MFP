@@ -1,4 +1,4 @@
-Instances,Source,algo_Push,algo_PAR,algo_P2R,algo_Pseudo,feature_Order,feature_Size,feature_Density,feature_AvNdDgr,feature_PercLoCap,feature_PercHiCap,feature_ScAvNdCap,feature_ScPotNetExcess,feature_AVScPotNetExcess,feature_cvCap,feature_cvAvNdDg,feature_ScRngCap,feature_ScAvCap,feature_ScCapDens
+Instances,Source,algo_Hi_PR,algo_PAR,algo_P2R,algo_Pseudo_Hi_FIFO,feature_Order,feature_Size,feature_Density,feature_AvNdDgr,feature_PercLoCap,feature_PercHiCap,feature_ScAvNdCap,feature_ScPotNetExcess,feature_AVScPotNetExcess,feature_cvCap,feature_cvAvNdDg,feature_ScRngCap,feature_ScAvCap,feature_ScCapDens
 AC_F_Rand_n10000_c100000000_1(Rand),AC,7.989,0.995,1.002,0.008,10000,49995000,0.5,4999.5,0.50003,0.49997,4999.2068,24988412.08,2499.3411,0.57734,0,2.0001,0.99994,0.49997
 AC_F_Rand_n10000_c100000000_2(Rand),AC,4.947,1.237,1.044,0.029,10000,49995000,0.5,4999.5,0.50002,0.49998,4999.4532,24988136.73,2499.3135,0.57732,0,2,0.99999,0.5
 AC_F_Rand_n10000_c100000000_3(Rand),AC,11.23,1.79,1.572,1.691,10000,49995000,0.5,4999.5,0.49998,0.50002,5000.4479,24989470.73,2499.447,0.57727,0,1.9996,1.0002,0.50009
