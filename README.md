@@ -27,7 +27,7 @@ Code by: Hossein Alipour
 Excel files are the metadata for MFP; **Metadata_M0.csv** is the initial metadata; **Metadata_M0'.csv** is the augmented metadata obtained by adding new instances to **Metadata_M0.csv**; **Metadata_M2.csv** is resulted after applying the instance selection process on **Metadata_M0'.csv**. For more details on obtaining **Metadata_M0'.csv** and **Metadata_M2.csv**, we refer readers to the following paper.
 ```
 Enhanced Instance Space Analysis for the Maximum Flow Problem
-by: Hossein Alipour, Mario Andrés Muñoz and Kate Smith-Miles
+by: Hossein Alipour, Mario Andrés Muñoz, Kate Smith-Miles
 ```
 
 
