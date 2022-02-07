@@ -1,25 +1,12 @@
-
 #include <stdio.h>
-#include <sys/time.h>
 #include <sys/resource.h>
 #include <stdlib.h>
 #include <math.h>
-
-#define STATS
 
 typedef unsigned int uint;
 typedef long int lint;
 typedef long long int llint;
 typedef unsigned long long int ullint;
-
-double
-timer (void)
-{
-  struct rusage r;
-
-  getrusage(0, &r);
-  return (double) (r.ru_utime.tv_sec + r.ru_utime.tv_usec / (double)1000000);
-}
 
 struct node;
 
@@ -27,36 +14,18 @@ typedef struct arc
 {
 	struct node *from;
 	struct node *to;
-	uint flow;
 	lint capacity;
 	uint direction;
 } Arc;
 
 typedef struct node
 {
-	uint visited;
 	uint numAdjacent;
 	uint number;
-	uint label;
 	lint excess;
 	uint incomingCapacity;
 	uint outgoingCapacity;
-	struct node *parent;
-	struct node *childList;
-	struct node *nextScan;
-	uint numOutOfTree;
-	Arc **outOfTree;
-	uint nextArc;
-	Arc *arcToParent;
-	struct node *next;
 } Node;
-
-
-typedef struct root
-{
-	Node *start;
-	Node *end;
-} Root;
 
 //---------------  Global variables ------------------
 static uint numNodes = 0;
@@ -69,16 +38,7 @@ long SrcAAC = 0, SnkAAC = 0;
 int Src_degree = 0, Snk_degree = 0;
 ullint AllCap = 0, NnSrcAAC = 0, NnzNnSrcAAC = 0;
 
-
-#ifdef LOWEST_LABEL
-static uint lowestStrongLabel = 1;
-#else
-static uint highestStrongLabel = 1;
-#endif
-
 static Node *adjacencyList = NULL;
-static Root *strongRoots = NULL;
-static uint *labelCount = NULL;
 static Arc *arcList = NULL;
 //-----------------------------------------------------
 
@@ -86,21 +46,11 @@ static Arc *arcList = NULL;
 static void
 initializeNode (Node *nd, const uint n)
 {
-	nd->label = 0;
 	nd->excess = 0;
 	nd->incomingCapacity = 0;
 	nd->outgoingCapacity = 0;
-	nd->parent = NULL;
-	nd->childList = NULL;
-	nd->nextScan = NULL;
-	nd->nextArc = 0;
-	nd->numOutOfTree = 0;
-	nd->arcToParent = NULL;
-	nd->next = NULL;
-	nd->visited = 0;
 	nd->numAdjacent = 0;
 	nd->number = n;
-	nd->outOfTree = NULL;
 }
 
 
@@ -110,7 +60,6 @@ initializeArc (Arc *ac)
 	ac->from = NULL;
 	ac->to = NULL;
 	ac->capacity = 0;
-	ac->flow = 0;
 	ac->direction = 1;
 }
 
@@ -506,7 +455,7 @@ for (i=0; i<numNodes; i++)
  AvPotNetExcess = (double)PotNetExcess / (double)(numNodes-2);
  AvPotNetDeficit = (double)PotNetDeficit / (double)(numNodes-2);
  AvNddegree = (double)2*numArcs/(double)(numNodes); // degrees are regarded regardless of the arc direction.
-                                                    // Therefore, each arc is counted two times- one tome for tail node snd one time for head node;
+                                                    // Therefore, each arc is counted two times- one tome for tail node and one time for head node;
 AvInnerNddegree = (double)(2*numArcs-Src_degree-Snk_degree)/(double)(numNodes-2);
 
  //printf("\nsource is %d with excess: %d", source, adjacencyList[source-1].excess);
