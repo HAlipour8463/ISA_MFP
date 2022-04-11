@@ -28,6 +28,8 @@ csv files are the metadata for MFP; **Metadata_M0.csv** is the initial metadata;
 ```
 Enhanced Instance Space Analysis for the Maximum Flow Problem
 by: Hossein Alipour, Mario Andrés Muñoz, Kate Smith-Miles
+European Journal of Operational Research
+2022
 ```
 
 
