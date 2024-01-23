@@ -28,7 +28,6 @@ European Journal of Operational Research
 https://doi.org/10.1016/j.ejor.2022.04.012
 ```
 
-
 ```
 Code by: Hossein Alipour
          School of Mathematics and Statistics
