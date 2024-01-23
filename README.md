@@ -1,21 +1,13 @@
 # ISA_MFP
-This repository includes source code written in C and MATLAB for extracting features from a given set of instances for the Maximum Flow Problem (MFP). It also facilitates the selection of unbiased instances based on their feature values. The chosen instances are then employed in the Instance Space Analysis (ISA) to discern the impact of features on the performance of MFP algorithms.  
-To apply ISA, we utilise the toolkit provided by [MATILDA](https://matilda.unimelb.edu.au/matilda/) available at: https://github.com/andremun/InstanceSpace. utilize the toolkit https://matilda.unimelb.edu.au/matilda/problems/opt/mfp#mfp.
+
+**dimacs_baisc_factors_sorted.c** is a C source code designed to extract the basic factors of a given network in DIMACS format. These basic factors include numNodes, numArcs, NetCap, maxcap, mincap, SrcAAC, SnkAAC, Src_degree, Snk_degree, AvCap, StDAC, NmBdCap, NmGdCap, PotNetExcess, PotNetDeficit, StDAvNdDg, and various other features found in the code. The extracted basic factors are then utilized by **ISAFtrExtractorPool_InitilizeTime_mod_pool.m** to extract the final features employed in the instance space analysis for MFP (see [MATILDA - MFP Instance Space Analysis](https://matilda.unimelb.edu.au/matilda/problems/opt/mfp#mfp)).
+
+**ISA.m** is the main script controlling different functions, including "ISAFtrExtractorPool_InitilizeTime_mod_pool," to generate the metadata used in the instance space analysis.
+
 
 * Benchmarks used here are in DIMACS format (see http://archive.dimacs.rutgers.edu/pub/netflow/generators/network/).
 
-```
-Code by: Hossein Alipour
-         School of Mathematics and Statistics
-         The University of Melbourne
-         Australia
-         2021
-         Email: halipour@alumni.unimelb.edu.au
- 
- Copyright: Hossein Alipour
- ```
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4922868.svg)](https://doi.org/10.5281/zenodo.4922868)
 
 
  **dimacs_baisc_factors_sorted.c** is a C source code designed to extract the basic factors of a given network in DIMACS format. These basic factors include numNodes, numArcs, NetCap, maxcap, mincap, SrcAAC, SnkAAC, Src_degree, Snk_degree, AvCap, StDAC, NmBdCap, NmGdCap, PotNetExcess, PotNetDeficit, StDAvNdDg, and various other features found in the code. The extracted basic factors are then utilised by **ISAFtrExtractorPool_InitilizeTime_mod_pool.m** to extract the final features employed in the instance space analysis for MFP (see [MATILDA - MFP Instance Space Analysis](https://matilda.unimelb.edu.au/matilda/problems/opt/mfp#mfp)).
@@ -37,3 +29,15 @@ https://doi.org/10.1016/j.ejor.2022.04.012
 ```
 
 
+```
+Code by: Hossein Alipour
+         School of Mathematics and Statistics
+         The University of Melbourne
+         Australia
+         2021
+         Email: halipour@alumni.unimelb.edu.au
+ 
+ Copyright: Hossein Alipour
+ ```
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4922868.svg)](https://doi.org/10.5281/zenodo.4922868)
